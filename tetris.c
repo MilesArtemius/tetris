@@ -188,6 +188,28 @@ void choose_next() { // there are seven types of figure: -, o, L, Lr, S, Sr and 
     switch (figure) {
         case LINE:
             draw_line(pos);
+            break;
+        case SQUARE:
+            draw_square(pos);
+            break;
+        case L_SHAPE:
+            draw_l_shape(pos);
+            break;
+        case L_SHAPE_REVERSED:
+            draw_l_shape_reversed(pos);
+            break;
+        case S_SHAPE:
+            draw_s_shape(pos);
+            break;
+        case S_SHAPE_REVERSED:
+            draw_s_shape_reversed(pos);
+            break;
+        case T_SHAPE:
+            draw_t_shape(pos);
+            break;
+        default:
+            draw_square(pos);
+            break;
     }
 
     //int num = (rand() % (upper - lower + 1)) + lower;
@@ -196,15 +218,15 @@ void choose_next() { // there are seven types of figure: -, o, L, Lr, S, Sr and 
 }
 
 void draw_line(int pos) {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         field[pos][i].state = moving;
         field[pos][i].graph = 'L';
     }
 }
 
 void draw_square(int pos) {
-    for (int i = 2; i < 4; i++) {
-        for (int j = pos; j < pos+2; ++j) {
+    for (int i = 2; i < 5; i++) {
+        for (int j = pos; j < pos+2; j++) {
             field[j][i].state = moving;
             field[j][i].graph = 'L';
         }
@@ -212,21 +234,46 @@ void draw_square(int pos) {
 }
 
 void draw_l_shape(int pos) {
-
+    for (int i = 1; i < 5; i++) {
+            field[pos][i].state = moving;
+            field[pos][i].graph = 'L';
+    }
+    field[pos+1][4].state = moving;
+    field[pos+1][4].graph = 'L';
 }
 
 void draw_l_shape_reversed(int pos) {
-
+    for (int i = 1; i < 5; i++) {
+        field[pos+1][i].state = moving;
+        field[pos+1][i].graph = 'L';
+    }
+    field[pos][4].state = moving;
+    field[pos][4].graph = 'L';
 }
 
 void draw_s_shape(int pos) {
-
+    for (int i = 0; i < 2; i++) {
+        field[pos+i][3].state = moving;
+        field[pos+i][3].graph = 'L';
+        field[pos+i+1][4].state = moving;
+        field[pos+i+1][4].graph = 'L';
+    }
 }
 
 void draw_s_shape_reversed(int pos) {
-
+    for (int i = 0; i < 2; i++) {
+        field[pos+i][4].state = moving;
+        field[pos+i][4].graph = 'L';
+        field[pos+i+1][3].state = moving;
+        field[pos+i+1][3].graph = 'L';
+    }
 }
 
 void draw_t_shape(int pos) {
-
+    for (int i = 0; i < 3; i++) {
+        field[pos+i][4].state = moving;
+        field[pos+i][4].graph = 'L';
+    }
+    field[pos+1][3].state = moving;
+    field[pos+1][3].graph = 'L';
 }
