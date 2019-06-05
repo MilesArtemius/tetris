@@ -212,7 +212,7 @@ void draw_square(int pos) {
 }
 
 void draw_l_shape(int pos) {
-    
+
 }
 
 void draw_l_shape_reversed(int pos) {
